@@ -21,10 +21,6 @@
 #include <array>
 #include <chrono>
 
-
-
-
-
 // OpenGL Mathmatics Libary
 #define GLM_FORCE_RADIANS
 #include <glm/glm.hpp>
