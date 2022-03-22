@@ -20,12 +20,15 @@
 #include <fstream>
 #include <array>
 #include <chrono>
+#include <unordered_map>
 
 // OpenGL Mathmatics Libary
 #define GLM_FORCE_RADIANS
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#define GLM_ENABLE_EXPERIMENTAL
+#include <glm/gtx/hash.hpp>
 
 // Validation layers to enable.
 const std::vector<const char*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
@@ -45,4 +48,6 @@ const bool enableValidationLayers = true;
 const uint32_t WIDTH = 800;
 const uint32_t HEIGHT = 600;
 const int MAX_FRAMES_IN_FLIGHT = 2;
+const std::string MODEL_PATH = "models/viking_room.obj";
+const std::string TEXTURE_PATH = "textures/viking_room.png";
 
