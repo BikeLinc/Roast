@@ -93,6 +93,7 @@ private:
     VkInstance instance;
     VkDebugUtilsMessengerEXT debugMessenger;
     VkPhysicalDevice physicalDevice;
+    VkSampleCountFlagBits msaaSamples = VK_SAMPLE_COUNT_1_BIT;
     VkDevice device;
     VkQueue graphicsQueue;
     VkSurfaceKHR surface;
@@ -144,6 +145,10 @@ private:
     VkDeviceMemory depthImageMemory;
     VkImageView depthImageView;
 
+    // MSAA Resources
+    VkImage colorImage;
+    VkDeviceMemory colorImageMemory;
+    VkImageView colorImageView;
     
     
     void initVulkan();
@@ -192,7 +197,7 @@ private:
     void createDescriptorSets();
     void setWindowFPS(GLFWwindow* win);
     void createTextureImage();
-    void createImage(uint32_t width, uint32_t height, uint32_t mipLevels, VkFormat format, VkImageTiling tiling, VkImageUsageFlags usage, VkMemoryPropertyFlags properties, VkImage& image, VkDeviceMemory& imageMemory);
+    void createImage(uint32_t width, uint32_t height, uint32_t mipLevels, VkSampleCountFlagBits numSamples, VkFormat format, VkImageTiling tiling, VkImageUsageFlags usage, VkMemoryPropertyFlags properties, VkImage& image, VkDeviceMemory& imageMemory);
     VkCommandBuffer beginSingleTimeCommands();
     void endSingleTimeCommands(VkCommandBuffer commandBuffer);
     void transitionImageLayout(VkImage image, VkFormat format, VkImageLayout oldLayout, VkImageLayout newLayout, uint32_t mipLevels);
@@ -205,4 +210,6 @@ private:
     VkFormat findDepthFormat();
     bool hasStencilComponent(VkFormat format);
     void generateMipmaps(VkImage image, VkFormat imageFormat, int32_t texWidth, int32_t texHeight, uint32_t mipLevels);
+    VkSampleCountFlagBits getMaxUsableSampleCount();
+    void createColorResources();
 };
